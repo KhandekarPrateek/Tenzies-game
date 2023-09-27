@@ -1,0 +1,14 @@
+import React from "react";
+
+function Die(props) {
+  //adding dynamic styles to our die
+  const styles = {
+    backgroundColor: props.status === true ? "#59E391" : "white",
+  };
+  return (
+    <div className="die-face" style={styles} onClick={props.function}>
+      <h2 className="die-num">{props.value}</h2>
+    </div>
+  );
+}
+export default Die;

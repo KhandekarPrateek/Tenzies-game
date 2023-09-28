@@ -68,15 +68,16 @@ function App() {
     }
   }
   return (
-    <main className="dice-container">
-      {tenzies === true && <Confetti />}
+    <main>
+      {tenzies === true && <Confetti className="confetti" />}
       <h1 className="title">TENZIES GAME</h1>
-      <p className="rules">
+      <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.
       </p>
-      {diceElements}
-      <button className="dice-button" onClick={handleClick}>
+      <div className="dice-container">{diceElements}</div>
+
+      <button className="roll-dice" onClick={handleClick}>
         {tenzies === true ? "New game" : "Roll"}
       </button>
     </main>

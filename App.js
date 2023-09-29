@@ -2,10 +2,22 @@ import "./App.css";
 import Die from "./die.js";
 import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
-import Confetti from "react-confetti";
+//import Confetti from "react-confetti";
 function App() {
   const [die, setDie] = useState(NewDie());
   const [tenzies, setTenzies] = useState(false);
+  const [monsterArray, setMonsterArray] = useState([]);
+  const api = () => {
+    const monsterArray = [];
+    for (let i = 0; i <= 6; i++) {
+      monsterArray.push(`https://robohash.org/${i}?set=set2`);
+    }
+    setMonsterArray(monsterArray);
+    console.log(monsterArray);
+  };
+  useEffect(() => {
+    api();
+  }, []);
 
   useEffect(() => {
     const allHeld = die.every((die) => die.isHeld);
@@ -15,7 +27,6 @@ function App() {
     const allValue = die.every((die) => die.value === firstValue);
     if (allValue && allHeld) {
       setTenzies(true);
-      console.log("won");
     }
   }, [die]);
 
@@ -49,7 +60,7 @@ function App() {
       value={EveryDie.value}
       status={EveryDie.isHeld}
       function={() => hold(EveryDie.id)}
-      link={`https://robohash.org/${EveryDie.value}?set=set2`}
+      link={monsterArray[EveryDie.value]}
     />
   ));
 
@@ -67,7 +78,7 @@ function App() {
   }
   return (
     <main>
-      {tenzies === true && <Confetti className="confetti" />}
+      {/* {tenzies === true && <Confetti className="confetti" />} */}
       <h1 className="title">TENZIES GAME</h1>
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
